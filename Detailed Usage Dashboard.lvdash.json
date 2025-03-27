@@ -5504,7 +5504,7 @@
       "widget" : {
         "name" : "8ff7fb95",
         "queries" : [ {
-          "name" : "dashboards/01efe5ad6ba3182081415822fd36ec45/datasets/01efe72997f51980be00abd0563aaccd_workspace",
+          "name" : "dashboards/01f00a909d9016ff91321b9658f995e1/datasets/01f00a92391312f8943b2bfd83b18d9c_workspace",
           "query" : {
             "datasetName" : "7e20f9b4",
             "fields" : [ {
@@ -5517,7 +5517,7 @@
             "disaggregated" : false
           }
         }, {
-          "name" : "parameter_dashboards/01efe5ad6ba3182081415822fd36ec45/datasets/01efefbbc8ed17a7b2ed5b10ccb04f90_workspace",
+          "name" : "parameter_dashboards/01f00a909d9016ff91321b9658f995e1/datasets/01f00a9239131213b6ff8e100789b185_workspace",
           "query" : {
             "datasetName" : "b75fec9c",
             "parameters" : [ {
@@ -5527,7 +5527,7 @@
             "disaggregated" : false
           }
         }, {
-          "name" : "parameter_dashboards/01efe5ad6ba3182081415822fd36ec45/datasets/01eff0703bf11183b041e3277fae6ac0_workspace",
+          "name" : "parameter_dashboards/01f00a909d9016ff91321b9658f995e1/datasets/01f00a92391312269d5ed4272ec28c05_workspace",
           "query" : {
             "datasetName" : "f5f16814",
             "parameters" : [ {
@@ -5544,17 +5544,18 @@
             "fields" : [ {
               "fieldName" : "workspace",
               "displayName" : "workspace",
-              "queryName" : "dashboards/01efe5ad6ba3182081415822fd36ec45/datasets/01efe72997f51980be00abd0563aaccd_workspace"
+              "queryName" : "dashboards/01f00a909d9016ff91321b9658f995e1/datasets/01f00a92391312f8943b2bfd83b18d9c_workspace"
             }, {
               "parameterName" : "workspace",
-              "queryName" : "parameter_dashboards/01efe5ad6ba3182081415822fd36ec45/datasets/01efefbbc8ed17a7b2ed5b10ccb04f90_workspace"
+              "queryName" : "parameter_dashboards/01f00a909d9016ff91321b9658f995e1/datasets/01f00a9239131213b6ff8e100789b185_workspace"
             }, {
               "parameterName" : "workspace",
-              "queryName" : "parameter_dashboards/01efe5ad6ba3182081415822fd36ec45/datasets/01eff0703bf11183b041e3277fae6ac0_workspace"
+              "queryName" : "parameter_dashboards/01f00a909d9016ff91321b9658f995e1/datasets/01f00a92391312269d5ed4272ec28c05_workspace"
             } ]
           },
           "frame" : {
-            "showTitle" : true
+            "showTitle" : true,
+            "title" : "Workspace"
           }
         }
       },
@@ -6658,7 +6659,11 @@
           "itemsPerPage" : 25,
           "paginationSize" : "default",
           "condensed" : true,
-          "withRowNumber" : false
+          "withRowNumber" : false,
+          "frame" : {
+            "showTitle" : true,
+            "title" : "User Workload Details"
+          }
         }
       },
       "position" : {
@@ -6671,7 +6676,7 @@
       "widget" : {
         "name" : "8209b8ff",
         "queries" : [ {
-          "name" : "dashboards/01efe5ad6ba3182081415822fd36ec45/datasets/01efefbbc8ed17a7b2ed5b10ccb04f90_user_name",
+          "name" : "dashboards/01f00a909d9016ff91321b9658f995e1/datasets/01f00a9239131213b6ff8e100789b185_user_name",
           "query" : {
             "datasetName" : "b75fec9c",
             "fields" : [ {
@@ -6684,7 +6689,7 @@
             "disaggregated" : false
           }
         }, {
-          "name" : "dashboards/01efe5ad6ba3182081415822fd36ec45/datasets/01eff0703bf11183b041e3277fae6ac0_user_name",
+          "name" : "dashboards/01f00a909d9016ff91321b9658f995e1/datasets/01f00a92391312269d5ed4272ec28c05_user_name",
           "query" : {
             "datasetName" : "f5f16814",
             "fields" : [ {
@@ -6704,11 +6709,11 @@
             "fields" : [ {
               "fieldName" : "user_name",
               "displayName" : "user_name",
-              "queryName" : "dashboards/01efe5ad6ba3182081415822fd36ec45/datasets/01efefbbc8ed17a7b2ed5b10ccb04f90_user_name"
+              "queryName" : "dashboards/01f00a909d9016ff91321b9658f995e1/datasets/01f00a9239131213b6ff8e100789b185_user_name"
             }, {
               "fieldName" : "user_name",
               "displayName" : "user_name",
-              "queryName" : "dashboards/01efe5ad6ba3182081415822fd36ec45/datasets/01eff0703bf11183b041e3277fae6ac0_user_name"
+              "queryName" : "dashboards/01f00a909d9016ff91321b9658f995e1/datasets/01f00a92391312269d5ed4272ec28c05_user_name"
             } ]
           },
           "frame" : {
@@ -8760,6 +8765,9 @@
               },
               "displayName" : "Compute Type"
             }
+          },
+          "frame" : {
+            "showTitle" : true
           }
         }
       },
@@ -10050,7 +10058,7 @@
           },
           "frame" : {
             "showTitle" : true,
-            "title" : "Monthly by Product"
+            "title" : "Daily by Product"
           }
         }
       },
