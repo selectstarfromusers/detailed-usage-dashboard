@@ -9144,23 +9144,27 @@
               "scale" : {
                 "type" : "quantitative"
               },
-              "axis" : {
-                "hideTitle" : false,
-                "title" : "Avg CPU Usage % (User)"
+              "format" : {
+                "type" : "number-plain",
+                "abbreviation" : "compact",
+                "decimalPlaces" : {
+                  "type" : "max",
+                  "places" : 0
+                }
               },
-              "displayName" : "Avg CPU Usage % (User)"
+              "displayName" : "Avg CPU Usage %"
             },
             "y" : {
               "fieldName" : "cluster_name",
+              "axis" : {
+                "title" : "Cluster Name",
+                "hideTitle" : false
+              },
               "scale" : {
                 "type" : "categorical",
                 "sort" : {
                   "by" : "x-reversed"
                 }
-              },
-              "axis" : {
-                "title" : "Cluster Name",
-                "hideTitle" : false
               },
               "displayName" : "Cluster Name"
             },
