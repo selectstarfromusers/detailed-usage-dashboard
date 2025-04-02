@@ -15,7 +15,7 @@ These dashboards are not official Databricks products. They are community-built 
 
 
 ### Setup (Git Repo)
-- **Add Repo Credentials** - In your Databricks workpace click on your user icon in the top right and click Settings then in the left hand menu click Developer
+- **Add Repo Credentials** - In your Databricks workpace click on your user icon in the top right and click Settings then in the left hand menu click Linked Accounts
   - ![image](https://github.com/user-attachments/assets/2d4e9c38-e3b4-4199-ac53-5522a15cbe81)
   - ![image](https://github.com/user-attachments/assets/9e463cc4-009e-4acf-ab9d-ab36499b70a3)
   - Either link your Git account or add your Git token
