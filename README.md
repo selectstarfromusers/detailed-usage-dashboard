@@ -22,8 +22,21 @@ These dashboards are not official Databricks products. They are community-built 
 - **Import Repo** - In Databricks > Workspace click Create > Git folder then paste the Git URL in the respective field and click Create Git Folder
   - ![image](https://github.com/user-attachments/assets/92767f56-bead-47a9-bcb7-77115913cc1a)
   - ![image](https://github.com/user-attachments/assets/602d0438-2870-4226-ba13-d9d29e71ad95)
-- **Workspace_names table** - In the new Git folder, open notebook file create_workspace_names to create the workspace_names table in the desired catalog/schema, update the wn_catalog, wn_schema, and wn_table widget parameters to the desired location and execute
-- **Update workspace_names parameters** - Open the Dashboard file in the Git folder, click Data on the top, then in all dashboard datasets that start with de_perf, de_usage, and u_workspace, update the wn_catalog, wn_schema, and wn_table parameters to match the location of the workspace_names table you created
+- **Create the workspace_names Lookup Table**
+  - In the new Git folder, open the notebook file create_workspace_names. This notebook creates the workspace_names Delta table, which is used as a lookup to display readable workspace names in the dashboard instead of workspace IDs.
+  - By default, the table is created in a specific catalog and schema. If you'd like to use a different location, simply update the widget parameters before running the notebook:
+    - wn_catalog
+    - wn_schema
+    - wn_table
+  - Note: The workspace_names table is created empty. You’ll need to populate it with your own data by adding rows that include both workspace_id and the corresponding workspace_name. This allows the dashboard to display user-friendly names instead of workspace IDs.
+  - You don’t need to rename or move the table—just update its contents as needed. But if you do change the catalog, schema, or table name, be sure to update the matching parameters in the dashboard (see next step). 
+- **Update Dashboard Parameters** (If You Changed the Lookup Table Location)
+  - Open the dashboard file in the Git folder. Click Data at the top of the dashboard.
+  - In all datasets starting with de_perf, de_usage, and u_workspace, update the following parameters to reflect the location of your workspace_names table:
+    - wn_catalog
+    - wn_schema
+    - wn_table
+  - This ensures the dashboard continues to pull the correct workspace names for reporting.
 - **Update contract parameters** - On the Executive Summary dashboard, update the Contract Start, Contract End, Contract Commit and Cloud Discount parameters to reflect your/your customer's current contractual agreement
 - **Refresh the Dashboard and Publish!**
  
