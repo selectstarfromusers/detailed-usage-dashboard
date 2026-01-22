@@ -2436,9 +2436,9 @@
         "      COALESCE(wn.workspace_name, u.workspace_id) = :workspace\n",
         "    )\n",
         "    AND IF(\n",
-        "      :tag_filter = '<ALL TAGS>',\n",
+        "      array_contains(:tag_filter,'<ALL TAGS>'),\n",
         "      TRUE,\n",
-        "      tag_key = :tag_filter\n",
+        "      array_contains(:tag_filter, tag_key)\n",
         "    )\n",
         "  GROUP BY\n",
         "    u.cloud,\n",
@@ -2620,6 +2620,7 @@
           "displayName": "tag_filter",
           "keyword": "tag_filter",
           "dataType": "STRING",
+          "complexType": "MULTI",
           "defaultSelection": {
             "values": {
               "dataType": "STRING",
@@ -9699,6 +9700,21 @@
                       "expression": "SUM(`total_discounted`)"
                     }
                   ],
+                  "parameterValues": [
+                    {
+                      "keyword": "show_top_n",
+                      "selection": {
+                        "values": {
+                          "dataType": "INTEGER",
+                          "values": [
+                            {
+                              "value": "1"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ],
                   "disaggregated": false
                 }
               }
@@ -9709,7 +9725,7 @@
               "encodings": {
                 "x": {
                   "fieldName": "tag_key",
-                  "displayName": "Job",
+                  "displayName": "Tag",
                   "scale": {
                     "type": "categorical",
                     "sort": {
@@ -9736,7 +9752,7 @@
                 "extra": [
                   {
                     "fieldName": "tag_key",
-                    "displayName": "job"
+                    "displayName": "Tag Key"
                   }
                 ]
               },
@@ -9748,7 +9764,7 @@
           },
           "position": {
             "x": 0,
-            "y": 4,
+            "y": 11,
             "width": 6,
             "height": 6
           }
@@ -9833,7 +9849,7 @@
           "position": {
             "x": 0,
             "y": 3,
-            "width": 2,
+            "width": 3,
             "height": 1
           }
         },
@@ -9873,9 +9889,9 @@
             }
           },
           "position": {
-            "x": 4,
-            "y": 3,
-            "width": 2,
+            "x": 0,
+            "y": 4,
+            "width": 3,
             "height": 1
           }
         },
@@ -9934,16 +9950,15 @@
                 },
                 "color": {
                   "fieldName": "tag_key",
-                  "legend": {
-                    "title": "Tag Key"
-                  },
+                  "displayName": "Tag",
                   "scale": {
                     "type": "categorical"
                   }
                 },
                 "extra": [
                   {
-                    "fieldName": "tag_key"
+                    "fieldName": "tag_key",
+                    "displayName": "Tag"
                   }
                 ]
               },
@@ -9955,7 +9970,7 @@
           },
           "position": {
             "x": 0,
-            "y": 10,
+            "y": 17,
             "width": 3,
             "height": 6
           }
@@ -10023,6 +10038,7 @@
                 },
                 "color": {
                   "fieldName": "tag_key",
+                  "displayName": "Tag",
                   "scale": {
                     "type": "categorical"
                   }
@@ -10047,7 +10063,7 @@
           },
           "position": {
             "x": 0,
-            "y": 16,
+            "y": 23,
             "width": 6,
             "height": 5
           }
@@ -10132,7 +10148,7 @@
           },
           "position": {
             "x": 3,
-            "y": 10,
+            "y": 17,
             "width": 3,
             "height": 6
           }
@@ -10187,9 +10203,170 @@
             }
           },
           "position": {
-            "x": 2,
+            "x": 3,
             "y": 3,
-            "width": 2,
+            "width": 3,
+            "height": 1
+          }
+        },
+        {
+          "widget": {
+            "name": "top-n-by-tag-heatmap",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "6f621a4a",
+                  "fields": [
+                    {
+                      "name": "sum(total_discounted)",
+                      "expression": "SUM(`total_discounted`)"
+                    },
+                    {
+                      "name": "tag_key",
+                      "expression": "`tag_key`"
+                    },
+                    {
+                      "name": "weekly(usage_date)",
+                      "expression": "DATE_TRUNC(\"WEEK\", `usage_date`)"
+                    }
+                  ],
+                  "parameterValues": [
+                    {
+                      "keyword": "show_top_n",
+                      "selection": {
+                        "values": {
+                          "dataType": "INTEGER",
+                          "values": [
+                            {
+                              "value": "1"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "heatmap",
+              "encodings": {
+                "x": {
+                  "fieldName": "tag_key",
+                  "axis": {
+                    "hideLabels": true
+                  },
+                  "displayName": "Tag",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "weekly(usage_date)",
+                  "displayName": "Usage Date",
+                  "scale": {
+                    "type": "temporal"
+                  }
+                },
+                "color": {
+                  "fieldName": "sum(total_discounted)",
+                  "format": {
+                    "type": "number-currency",
+                    "currencyCode": "USD",
+                    "abbreviation": "compact",
+                    "decimalPlaces": {
+                      "type": "max",
+                      "places": 2
+                    }
+                  },
+                  "displayName": "Total",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "extra": [
+                  {
+                    "fieldName": "tag_key",
+                    "displayName": "Tag Key"
+                  }
+                ]
+              },
+              "frame": {
+                "showTitle": true,
+                "title": "Top N by Tag - Weekly Heatmap"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 5,
+            "width": 6,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "tags",
+            "queries": [
+              {
+                "name": "dashboards/01f00a909d9016ff91321b9658f995e1/datasets/01f0f6a793dc1c9d9b0ad46f2733170e_tag_key",
+                "query": {
+                  "datasetName": "06f46616",
+                  "fields": [
+                    {
+                      "name": "tag_key",
+                      "expression": "`tag_key`"
+                    },
+                    {
+                      "name": "tag_key_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              },
+              {
+                "name": "parameter_dashboards/01f00a909d9016ff91321b9658f995e1/datasets/01f0f6a793dc1c17816646c168b2296f_tag_filter",
+                "query": {
+                  "datasetName": "6f621a4a",
+                  "parameters": [
+                    {
+                      "name": "tag_filter",
+                      "keyword": "tag_filter"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "filter-multi-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "parameterName": "tag_filter",
+                    "queryName": "parameter_dashboards/01f00a909d9016ff91321b9658f995e1/datasets/01f0f6a793dc1c17816646c168b2296f_tag_filter"
+                  },
+                  {
+                    "fieldName": "tag_key",
+                    "queryName": "dashboards/01f00a909d9016ff91321b9658f995e1/datasets/01f0f6a793dc1c9d9b0ad46f2733170e_tag_key"
+                  }
+                ]
+              },
+              "frame": {
+                "showTitle": true,
+                "title": "Tags"
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 4,
+            "width": 3,
             "height": 1
           }
         }
